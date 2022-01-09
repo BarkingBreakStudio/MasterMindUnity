@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: badf296608880bb4caac294e5b5099cc, type: 3}
+  m_Name: MastermindViewSettings
+  m_EditorClassIdentifier: 
+  isDefaultSettings: 1
+  CodePegMaterials:
+  - {fileID: 2100000, guid: 7f88f934937ac2e42884964c515e05f3, type: 2}
+  - {fileID: 2100000, guid: 696d7bba60a028e418dca0a82a28b988, type: 2}
+  - {fileID: 2100000, guid: 7cf2eb68f50c9204ba190abf4e76da27, type: 2}
+  - {fileID: 2100000, guid: 90410a00ad267e44a9e760a573650354, type: 2}
+  KeyPegMaterials:
+  - {fileID: 2100000, guid: 84c6650dac8b3d94bbf1ac65e2da3ba9, type: 2}
+  - {fileID: 2100000, guid: 738f715d2dfedc84ab096b7ef059e344, type: 2}
