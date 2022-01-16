@@ -15,8 +15,6 @@ namespace NorLib
     public class SaveSystem
     {
 
-        //public interfacce
-
         public static FileType DefaultFileType = new JsonHrFile();
 
         /// <summary>

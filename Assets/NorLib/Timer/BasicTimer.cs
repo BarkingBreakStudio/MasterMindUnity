@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 namespace NorLib.Timer
 {
-
     public class BasicTimer : MonoBehaviour
     {
         public UnityEvent EvtTimerTick;
@@ -41,7 +40,6 @@ namespace NorLib.Timer
                 elepasedTime += interval;
             }
         }
-
 
     }
 }

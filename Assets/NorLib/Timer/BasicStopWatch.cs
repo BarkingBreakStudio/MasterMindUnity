@@ -6,8 +6,6 @@ namespace NorLib.Timer
 {
     public class BasicStopWatch : MonoBehaviour
     {
-
-
         [SerializeField]
         float elapsedTime;
 

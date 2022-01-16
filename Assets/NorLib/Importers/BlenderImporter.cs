@@ -10,7 +10,6 @@ namespace NorLib
 {
     public class BlenderImporter : AssetPostprocessor
     {
-
         void OnPreprocessModel()
         {
             if (assetPath.EndsWith(".blend"))
