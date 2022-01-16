@@ -8,8 +8,6 @@ public class CodePegRow : MonoBehaviour
 
     public CodePeg[] CodePegs = new CodePeg[0];
 
-    public PegClickArea2[] PegClickAreas = new PegClickArea2[0];
-
     // Start is called before the first frame update
     void Start()
     {

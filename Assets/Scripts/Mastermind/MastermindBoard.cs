@@ -108,7 +108,7 @@ public class MastermindBoard : MonoBehaviour
                 {
                     mmrows[activeRow].SetCodePegColors(CodePegsColor);
                 }
-                else //no row left - play lost
+                else //no row left - player lost
                 {
                     activeRow = -1;
                     PlayerLost?.Invoke();
