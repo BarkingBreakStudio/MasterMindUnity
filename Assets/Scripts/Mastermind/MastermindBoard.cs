@@ -15,6 +15,8 @@ public class MastermindBoard : MonoBehaviour
 
     public MasterMindGame2 mmg = new MasterMindGame2();
 
+    public Animator sightShieldAnim;
+
     private int activeRow;
 
     //events
@@ -29,16 +31,30 @@ public class MastermindBoard : MonoBehaviour
         mmg.StartMMGame();
     }
 
+    private void OnEnable()
+    {
+        PlayerWon.AddListener(RemoveSightShield);
+        PlayerLost.AddListener(RemoveSightShield);
+    }
+
+    private void OnDisable()
+    {
+        PlayerWon.RemoveListener(RemoveSightShield);
+        PlayerLost.RemoveListener(RemoveSightShield);
+    }
+
+    private void RemoveSightShield()
+    {
+        sightShieldAnim.SetTrigger("removeSightShield");
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         StartNewGame();
-        /*
-        var clickAreas = GetComponentsInChildren<PegClickArea2>();
-        foreach (var clickArea in clickAreas)
-        {
-            clickArea.UserClick += ClickArea_UserClick;
-        }*/
+
         var codePegs = GetComponentsInChildren<CodePeg>();
         foreach (var codePeg in codePegs)
         {
@@ -81,25 +97,32 @@ public class MastermindBoard : MonoBehaviour
             //check if player won
             if (keyPegs.Count(x => x == MasterMindGame2.eKeyPeg.matching) == keyPegs.Length)
             {
+                activeRow = -1;
                 PlayerWon?.Invoke();
             }
             else
             {
                 //move to next row
                 activeRow++;
-                for (int i = 0; i < mmrows.Length; i++)
-                {
-                    mmrows[i].ActiveRowChanged(activeRow);
-                }
-
                 if (activeRow < mmrows.Length) //set up next row
                 {
                     mmrows[activeRow].SetCodePegColors(CodePegsColor);
                 }
                 else //no row left - play lost
                 {
+                    activeRow = -1;
                     PlayerLost?.Invoke();
                 }
+            }
+
+            SetActiveRow();
+        }
+
+        void SetActiveRow()
+        {
+            for (int i = 0; i < mmrows.Length; i++)
+            {
+                mmrows[i].ActiveRowChanged(activeRow);
             }
         }
     }
