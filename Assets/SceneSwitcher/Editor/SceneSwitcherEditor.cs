@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 
 namespace SceneSwitcher
 {
@@ -42,7 +43,7 @@ namespace SceneSwitcher
 		{
 			m_OpenInSceneView = false;
 			m_CloseInSceneView = true;
-			SceneView.onSceneGUIDelegate += OnScene;
+			SceneView.duringSceneGui += OnScene;
 			SceneView.RepaintAll();
 		}
 
@@ -53,14 +54,13 @@ namespace SceneSwitcher
 		{
 			m_OpenInSceneView = true;
 			m_CloseInSceneView = false;
-			SceneView.onSceneGUIDelegate -= OnScene;
+			SceneView.duringSceneGui -= OnScene;
 			SceneView.RepaintAll();
 		}
 		
 		private void OnGUI ()
 		{
 			m_Scenes = GetScenes();
-			GUI.skin.font = ((GUIStyle)"ShurikenLabel").font;
 			
 			EditorGUILayout.BeginVertical((GUIStyle)"HelpBox");
 			EditorGUILayout.LabelField("Scene Switcher", (GUIStyle)"ShurikenEmitterTitle");
@@ -83,7 +83,6 @@ namespace SceneSwitcher
 		{
 			Handles.BeginGUI();
 			m_Scenes = GetScenes();
-			GUI.skin.font = ((GUIStyle)"ShurikenLabel").font;
 
 			if(GUI.Button(new Rect(10,10,212,15), "Scene Switcher", EditorStyles.miniButton))
 				m_IsMinimized = !m_IsMinimized;
@@ -105,9 +104,9 @@ namespace SceneSwitcher
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Space(2);
-			
-			SearchString = GUILayout.TextField(SearchString, (GUIStyle)"ToolbarSeachTextField");
-			
+
+			SearchString = GUILayout.TextField(SearchString,(GUIStyle)"ToolbarSeachTextField");
+
 			GUIStyle searchCancelStyle = (SearchString == "") ? (GUIStyle)"ToolbarSeachCancelButtonEmpty" : (GUIStyle)"ToolbarSeachCancelButton";
 			
 			if (GUILayout.Button ("", searchCancelStyle))
@@ -129,7 +128,7 @@ namespace SceneSwitcher
 					EditorGUIUtility.labelWidth = 50;
 
 					string currentScene = "";
-					if(EditorApplication.currentScene.Contains(scene.sceneName))
+					if(EditorSceneManager.GetActiveScene().name.Contains(scene.sceneName))
 						currentScene = "[LOADED] ";
 
 					EditorGUILayout.LabelField(new GUIContent(currentScene + scene.sceneName, scene.sceneName));
@@ -166,8 +165,8 @@ namespace SceneSwitcher
 		
 		private static void OpenScene(string filePath)
 		{
-			if(EditorApplication.SaveCurrentSceneIfUserWantsTo())
-				EditorApplication.OpenScene(filePath);
+			if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+				EditorSceneManager.OpenScene(filePath);
 		}
 
 		private static void DeleteScene(string filePath)
