@@ -12,15 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MasterMindPlayfield.unity
     guid: ea36b60940cc39c40a8975fb9a225a9d
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/PersistentScene.unity
     guid: 3eefbbde6f121c94f98fc2a43b665d6d
-  - enabled: 1
-    path: Assets/Scenes/SampleScene2.unity
-    guid: 1bdfa559a8c403548a58f47e75db7fef
-  - enabled: 1
-    path: Assets/Scenes/SampleSceneAdditive.unity
-    guid: e060bb1c11283d7449ef935137103dfb
   m_configObjects: {}
